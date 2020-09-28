@@ -1,0 +1,11 @@
+footer {
+  background-color: var(--footerBgColor);
+  height: var(--footerHeight);
+  text-align: center;
+  color: var(--lightTextColor);
+  i {
+    color: red;
+    font-size: 25px;
+    margin-left: 5px;
+  }
+}

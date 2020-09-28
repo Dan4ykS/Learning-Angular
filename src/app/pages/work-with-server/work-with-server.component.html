@@ -1,0 +1,39 @@
+<div class="addPost formControl">
+  <input type="text" placeholder="Заголовок поста" [(ngModel)]="postTitle" />
+  <input type="text" placeholder="Текст поста" [(ngModel)]="postBody" />
+  <button
+    class="btn"
+    [disabled]="!postTitle.trim() || !postBody.trim()"
+    (click)="
+      postService.createPost({ title: postTitle, body: postBody });
+      postTitle = postBody = ''
+    "
+  >
+    Создать пост
+  </button>
+</div>
+
+<app-loader-data
+  [loading]="postService.loading"
+  [funcForLoading]="!postService.posts.length ? postService.fetchPosts : null"
+  [error]="postService.error"
+>
+  <div class="post" *ngFor="let post of postService.posts">
+    <h3>Пост: "{{ post.title }}"</h3>
+    <hr />
+    <div class="btnGroup_right">
+      <a
+        [routerLink]="['post', post.id - 100]"
+        class="btn"
+        [queryParams]="
+          post.body.length > 50 ? { showId: true } : { showId: false }
+        "
+      >
+        Читать подробнее
+      </a>
+      <button class="btn btn-red" (click)="postService.removePost(post.id)">
+        Удалить
+      </button>
+    </div>
+  </div>
+</app-loader-data>

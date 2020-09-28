@@ -1,0 +1,19 @@
+<header>
+  <nav class="container flexWrap_center">
+    <a
+      routerLink="/"
+      routerLinkActive="activeLogo"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="../../../assets/shield-large.svg" alt="home" />
+    </a>
+    <a routerLink="/forms" routerLinkActive="active">Формы</a>
+    <a routerLink="/server" routerLinkActive="active">Работа с сервером</a>
+    <a routerLink="/modules" routerLinkActive="active">Модули</a>
+    <a routerLink="/animations" routerLinkActive="active">Анимации</a>
+    <div class="auth btnGroup">
+      <button class="btn logIn" (click)="authservice.logIn()">Войти</button>
+      <button class="btn logOut" (click)="authservice.logOut()">Выйти</button>
+    </div>
+  </nav>
+</header>

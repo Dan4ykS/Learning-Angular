@@ -1,0 +1,106 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Формы в Angular</h1>
+  <div class="formControl">
+    <input type="text" placeholder="Email" formControlName="email" />
+    <div
+      class="invalid"
+      *ngIf="
+        (getFormEl('email').invalid && getFormEl('email').dirty) ||
+        (getFormEl('email').invalid && getFormEl('email').touched)
+      "
+    >
+      <small *ngIf="getFormEl('email').errors.required">
+        Поле обязателбно для заполнения
+      </small>
+      <small *ngIf="getFormEl('email').errors.email">Email не существует</small>
+      <small *ngIf="getFormEl('email').errors.notUnicEmail">
+        Email {{ getFormEl("email").value }} уже используется
+      </small>
+    </div>
+  </div>
+
+  <div class="formControl">
+    <input type="password" placeholder="Пароль" formControlName="password" />
+    <div
+      class="invalid"
+      *ngIf="
+        (getFormEl('password').invalid && getFormEl('password').dirty) ||
+        (getFormEl('password').invalid && getFormEl('password').touched)
+      "
+    >
+      <small *ngIf="getFormEl('password').errors.required">
+        Поле обязателбно для заполнения
+      </small>
+      <small *ngIf="getFormEl('password').errors.minlength">
+        Пароль слишком короткий, минимальная длина
+        {{ getFormEl("password").errors.minlength.requiredLength }} символов.
+        Сейчас: {{ getFormEl("password").errors.minlength.actualLength }}
+      </small>
+    </div>
+  </div>
+
+  <div class="card" formGroupName="address">
+    <h2>Адрес</h2>
+    <div class="formControl">
+      <label>Страна:</label>
+      <select formControlName="country">
+        <option value="ru">Россия</option>
+        <option value="ua">Украина</option>
+        <option value="by">Беларусь</option>
+      </select>
+    </div>
+    <div class="formControl">
+      <input type="text" placeholder="Город" formControlName="city" />
+      <div
+        class="invalid"
+        *ngIf="
+          getFormEl('address.city').invalid && getFormEl('address.city').touched
+        "
+      >
+        <small>Поле обязательно для заполнения</small>
+      </div>
+    </div>
+    <button class="btn" type="button" (click)="chooseCity()">
+      Выбрать столицу
+    </button>
+  </div>
+
+  <div class="card" formGroupName="skills">
+    <h2>Ваши навыки</h2>
+    <button class="btn" type="button" (click)="addNewControl()">
+      Добавить умение
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 16 16"
+        class="bi bi-plus-square"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+    </button>
+    <hr />
+    <div
+      class="formControl animated fadeInDown"
+      *ngFor="let skill of skills.controls; index as i"
+    >
+      <label>Умение {{ i + 1 }}</label>
+      <input type="text" [formControlName]="i" />
+      <div class="invalid" *ngIf="skill.invalid && skill.touched">
+        <small>Поле обязательно для заполнения</small>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" type="submit" [disabled]="form.invalid || form.pending">
+    Отправить
+  </button>
+</form>

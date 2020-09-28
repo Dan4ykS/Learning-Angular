@@ -1,0 +1,16 @@
+.post {
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+}
+
+input {
+  &:first-child {
+    margin-bottom: 20px;
+  }
+}
+
+button {
+  margin-top: 10px;
+}

@@ -1,0 +1,80 @@
+header {
+  height: var(--headerHeight);
+  background-color: var(--headerBgColor);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  nav {
+    height: 100%;
+    a {
+      margin-right: 20px;
+      color: #fff;
+      position: relative;
+      &:first-child {
+        position: absolute;
+        left: 20px;
+        height: 35px;
+        width: 35px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: 0.2s;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 10%;
+        width: 0;
+        height: 2px;
+        background-color: var(--linkActiveColor);
+        transition: 0.3s;
+      }
+    }
+    .active {
+      &::before {
+        content: "";
+        width: 100%;
+      }
+    }
+    .activeLogo {
+      box-shadow: 0 0 10px 0.1rem var(--darkTextColor);
+      border-radius: 100%;
+      background-color: var(--linkColor);
+      img {
+        transform: translate(-50%, -50%) scale(1.1) !important;
+      }
+    }
+  }
+  .auth {
+    position: absolute;
+    right: 20px;
+    width: 150px;
+    font-size: 17px;
+    .btn {
+      padding: 5px 10px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  header {
+    .auth {
+      right: 0;
+      width: 100px;
+      font-size: 15px;
+      .btn {
+        padding: 2px 3px;
+      }
+    }
+  }
+}
