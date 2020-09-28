@@ -1,3 +1,6 @@
+@import "../../../styles/mixins.scss";
+
+
 header {
   height: var(--headerHeight);
   background-color: var(--headerBgColor);
@@ -20,10 +23,7 @@ header {
         transform: translateY(-50%);
         margin: 0;
         img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          @include alignCenter;
           transition: 0.2s;
         }
       }

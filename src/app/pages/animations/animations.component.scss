@@ -1,17 +1,14 @@
+@import "../../../styles/mixins.scss";
+
 div {
   cursor: pointer;
   color: var(--lightTextColor);
   height: 200px;
   width: 200px;
   border: 2px solid var(--borderColor);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @include alignCenter;
+
   h4 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include alignCenter;
   }
 }

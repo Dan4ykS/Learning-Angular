@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { boxAnimation } from './animations'
+import { boxAnimation } from './animations';
 @Component({
   selector: 'app-animations',
   templateUrl: './animations.component.html',
@@ -18,10 +18,10 @@ export class AnimationsComponent implements OnInit {
     this.animationState = this.animationState === 'start' ? 'end' : 'start';
   }
 
-  specialAnimated() { 
-    console.log(this.animationState);
-    this.animationState = this.animationState === 'start' || this.animationState === 'end' ? 'special' : 'start';
-    console.log(this.animationState);
-    
+  specialAnimated() {
+    this.animationState =
+      this.animationState === 'start' || this.animationState === 'end'
+        ? 'special'
+        : 'start';
   }
 }
